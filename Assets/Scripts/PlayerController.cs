@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
         SetCountText();
         winTextObject.SetActive(false);
+        speed = 10;
     }
 
     void OnMove(InputValue movementValue)
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
         rb.AddForce(movement * speed);
     }
-   private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -72,9 +73,15 @@ public class PlayerController : MonoBehaviour
             count = count + 1;
             SetCountText();
         }
+        if(other.gameObject.CompareTag("SpeedBoost"))
+        {
+            other.gameObject.SetActive(false);
+            speed = speed + 2;
+
+        }
+        
         
     }
-   
    
    
 }
