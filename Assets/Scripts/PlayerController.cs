@@ -4,6 +4,9 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    public Material particleMat;
+    [SerializeField] private ParticleSystem particleSystem;
+
     public float speed = 0;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
@@ -54,14 +57,18 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            particleMat = collision.gameObject.GetComponent<Renderer>().material;
+            //particleSystem.GetComponent<Renderer>().material.CopyPropertiesFromMaterial(particleMat);
 
             Destroy(gameObject); 
  
 
             winTextObject.gameObject.SetActive(true);
             winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+            particleSystem.Play();
  
         }
+        
 
     }
 
@@ -69,9 +76,11 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("PickUp"))
         {
+            particleMat = other.gameObject.GetComponent<Renderer>().material;
             other.gameObject.SetActive(false);
             count = count + 1;
             SetCountText();
+            particleSystem.Play();
         }
         if(other.gameObject.CompareTag("SpeedBoost"))
         {
