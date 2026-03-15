@@ -4,6 +4,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    private int lives=3;
     
     [SerializeField] private ParticleSystem collectParticleSystem;
     [SerializeField] private ParticleSystem dieParticleSystem;
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
     }
     void SetCountText()
     {
-        countText.text = "Count: " +  count.ToString();
+        
         if (count >= 22)
         {
             winTextObject.SetActive(true);
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        countText.text = "Count: " +  count.ToString() + "/22\nLives: " + lives.ToString();
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
         rb.AddForce(movement * speed);
@@ -58,14 +60,17 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            
-
-            Destroy(gameObject); 
- 
-
-            winTextObject.gameObject.SetActive(true);
-            winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+            lives--;
+            if(lives>=1){                
+                // gameObject.transform.position = Vector3.zero;                               
+            }else{
+                Destroy(gameObject); 
+                winTextObject.gameObject.SetActive(true);
+                winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";                
+            }
             dieParticleSystem.Play();
+
+            
  
         }
         
