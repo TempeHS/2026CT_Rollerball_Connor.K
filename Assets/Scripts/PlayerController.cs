@@ -3,7 +3,11 @@ using UnityEngine.InputSystem;
 using TMPro;
 
 public class PlayerController : MonoBehaviour
-{
+{   
+    public Material normal;
+    public Material invuln;
+    private Renderer objectRenderer;
+    public float invulnTime = 3.0f;
     private int lives=3;
     
     [SerializeField] private ParticleSystem collectParticleSystem;
@@ -21,6 +25,9 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        objectRenderer = GetComponent<Renderer>();
+
+       
         rb = GetComponent<Rigidbody>();
         count = 0;
 
@@ -55,14 +62,27 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
         rb.AddForce(movement * speed);
+        invulnTime -= Time.deltaTime;;
+
+        if(invulnTime>=0.0f){
+            if(Time.time%1 > 0.5){
+                objectRenderer.material = invuln;
+            }else{
+                objectRenderer.material = normal;
+            }          
+        }else{
+            objectRenderer.material = normal;
+
+        }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)  
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy")&& invulnTime<=0.0f)
         {
             lives--;
             if(lives>=1){                
-                // gameObject.transform.position = Vector3.zero;                               
+                gameObject.transform.position = Vector3.zero;        
+                invulnTime = 2.0f;                       
             }else{
                 Destroy(gameObject); 
                 winTextObject.gameObject.SetActive(true);

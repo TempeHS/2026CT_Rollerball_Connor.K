@@ -1466,6 +1466,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dffcd287019a8574491776072cccf9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normal: {fileID: 2100000, guid: b7b2e7ec232de8c47be812cb4f767797, type: 2}
+  invuln: {fileID: 2100000, guid: 6651089c67b9ac240b92247a13c93393, type: 2}
+  invulnTime: 10
   collectParticleSystem: {fileID: 1449056575}
   dieParticleSystem: {fileID: 1031157283}
   speed: 10
