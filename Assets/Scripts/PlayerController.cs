@@ -4,6 +4,8 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {   
+    public GameObject testprefab; 
+
     public Material normal;
     public Material invuln;
     private Renderer objectRenderer;
@@ -58,6 +60,11 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // Example 2: Spawn at a specific position (0, 10, 0) with original rotation
+            Instantiate(testprefab, transform.position, transform.rotation);
+        }
         countText.text = "Count: " +  count.ToString() + "/22\nLives: " + lives.ToString();
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
