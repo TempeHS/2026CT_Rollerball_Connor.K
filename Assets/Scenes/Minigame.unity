@@ -3060,7 +3060,7 @@ GameObject:
   - component: {fileID: 1031157284}
   - component: {fileID: 1031157283}
   - component: {fileID: 1031157282}
-  - component: {fileID: 1031157281}
+  - component: {fileID: 1031157285}
   m_Layer: 0
   m_Name: Die Particle
   m_TagString: Untagged
@@ -3068,19 +3068,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1031157281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1031157279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51cd52b74409d5c47a1ab311964973aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 537487409}
 --- !u!199 &1031157282
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -7897,6 +7884,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1031157285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031157279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c656af6097191e4db9dec3e80c2f3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 537487409}
 --- !u!1001 &1041683754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14389,7 +14389,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1449056573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51cd52b74409d5c47a1ab311964973aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c656af6097191e4db9dec3e80c2f3b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 537487409}
