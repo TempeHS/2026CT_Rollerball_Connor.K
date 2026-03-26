@@ -7,6 +7,7 @@ public class BulletMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        transform.Translate(Vector3.forward * 2 );
         gameObject.SetActive(true);
     }
 

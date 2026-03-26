@@ -17,16 +17,16 @@ public class turretPointScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        shootcd -= Time.deltaTime;
         playerdist = Vector3.Distance(transform.position, player.position);
-        if(playerdist<5){
-            shootcd -= Time.deltaTime;
+        if(playerdist<9){
+            transform.LookAt(player.position);
             if(shootcd<=0.0f){
                 GameObject clone = Instantiate(bulletObject, transform.position, transform.rotation);
                 BulletMovement scriptReference = clone.AddComponent<BulletMovement>(); 
                 shootcd = 1.0f;
             }
-            transform.LookAt(player.position);
+            
         }
         
         

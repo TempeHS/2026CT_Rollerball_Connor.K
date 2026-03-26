@@ -4,7 +4,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {   
-    public GameObject testprefab; 
+    
 
     public Material normal;
     public Material invuln;
@@ -60,16 +60,12 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // Example 2: Spawn at a specific position (0, 10, 0) with original rotation
-            Instantiate(testprefab, transform.position, transform.rotation);
-        }
+        
         countText.text = "Count: " +  count.ToString() + "/22\nLives: " + lives.ToString();
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
         rb.AddForce(movement * speed);
-        invulnTime -= Time.deltaTime;;
+        invulnTime -= Time.deltaTime;
 
         if(invulnTime>=0.0f){
             if(Time.time%1 > 0.5){
@@ -121,7 +117,19 @@ public class PlayerController : MonoBehaviour
             speed = speed + 2;
 
         }
-        
+        if (other.gameObject.CompareTag("Enemy")&& invulnTime<=0.0f)
+        {
+            lives--;
+            if(lives>=1){                
+                gameObject.transform.position = Vector3.zero;        
+                invulnTime = 2.0f;                       
+            }else{
+                Destroy(gameObject); 
+                winTextObject.gameObject.SetActive(true);
+                winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";                
+            }
+            dieParticleSystem.Play();
+        }
         
     }
    
